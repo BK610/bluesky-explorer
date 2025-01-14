@@ -19,34 +19,36 @@ export default function BlueskyPost({ post_data }) {
      * - Showing images
      * - Showing link previews
      */
-    <a href={blueskyUri} target="_blank">
-      <div
-        className="p-4 mb-4 bg-stone-200 dark:bg-stone-800 rounded-lg
-      border border-stone-300 dark:border-stone-500 border-b-stone-900 dark:border-b-stone-200 hover:border-stone-900 hover:dark:border-stone-200 "
-      >
-        <div className="flex flex-col w-full">
-          {isRepost && (
-            <div className="ml-16 -mt-2 pb-2 text-xs text-stone-700 dark:text-stone-400">
-              🔁 Reposted by @{reason.by.handle}
-            </div>
-          )}
-          <div className="flex w-full items-start">
-            <img
-              className="mr-4 border border-stone-900 dark:border-stone-500 rounded-full"
-              src={author.avatar}
-              height={"50px"}
-              width={"50px"}
-              alt={`Avatar photo of user ${author.displayName}`}
-            />
-            <div className="w-full">
-              <BlueskyPostHeader author={author} record={record} />
-              <BlueskyPostText text={record.text} />
-              <BlueskyPostFooter post={post_data.post} />
+    <div>
+      <a href={blueskyUri} target="_blank">
+        <div
+          className="p-4 bg-stone-200 dark:bg-stone-800 rounded-lg
+        border border-stone-300 dark:border-stone-500 border-b-stone-900 dark:border-b-stone-200 hover:border-stone-900 hover:dark:border-stone-200 "
+        >
+          <div className="flex flex-col w-full">
+            {isRepost && (
+              <div className="ml-16 -mt-2 pb-2 text-xs text-stone-700 dark:text-stone-400">
+                🔁 Reposted by @{reason.by.handle}
+              </div>
+            )}
+            <div className="flex w-full items-start">
+              <img
+                className="mr-4 border border-stone-900 dark:border-stone-500 rounded-full"
+                src={author.avatar}
+                height={"50px"}
+                width={"50px"}
+                alt={`Avatar photo of user ${author.displayName}`}
+              />
+              <div className="w-full">
+                <BlueskyPostHeader author={author} record={record} />
+                <BlueskyPostText text={record.text} />
+                <BlueskyPostFooter post={post_data.post} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   );
 }
 

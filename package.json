@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@atproto/api": "^0.13.27",
+    "@tailwindcss/typography": "^0.5.16",
     "micromark": "^4.0.1",
     "next": "15.1.4",
     "react": "^19.0.0",

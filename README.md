@@ -7,10 +7,10 @@ After `console.log(post)`ing ad nauseum while building a UI component to render 
 For now, searching by Bluesky handles, profile URIs, and DIDs are supported, and all posts from an account are displayed. In the future I'll add better support for threads, and possibly for searching by individual posts, feeds, and other data structures.
 ## Usage
 
-1. Enter one of the following into the search bar:
-  - A Bluesky URI (e.g. https://bsky.app/profile/baileykane.co)
-  -  A Bluesky handle (e.g. baileykane.co)
-  - A Bluesky DID (e.g. did:plc:4zwo7e6xbmv3clz7bj5wsxxu)
+1. Search with one of the following into the search bar:
+    - A Bluesky URI (e.g. https://bsky.app/profile/baileykane.co)
+    - A Bluesky handle (e.g. baileykane.co)
+    - A Bluesky DID (e.g. did:plc:4zwo7e6xbmv3clz7bj5wsxxu)
 2. Retrieved posts and information from the Bluesky API will be displayed, alongside the corresponding JSON for each item
 
 ## Built with

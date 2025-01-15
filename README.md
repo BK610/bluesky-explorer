@@ -1,4 +1,4 @@
-[🔗 Check it out](https://bluesky-explorer-sepia.vercel.app/)
+## [🔗 Check it out](https://bluesky-explorer-sepia.vercel.app/)
 
 # Why I did this
 

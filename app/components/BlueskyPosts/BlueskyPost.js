@@ -1,16 +1,51 @@
 import BlueskyPostHeader from "./BlueskyPostHeader";
 import BlueskyPostText from "./BlueskyPostText";
 import BlueskyPostFooter from "./BlueskyPostFooter";
-import Image from "next/image";
 
-export default function BlueskyPost({ post_data }) {
-  const { author, record, uri } = post_data.post;
-  const { reason } = post_data;
+export default function BlueskyPost({ postData }) {
+  const { author, record, uri } = postData.post;
+  const { reason } = postData;
 
   const blueskyUri = getBlueskyUri(author.handle, uri);
   const isRepost =
     typeof reason !== "undefined" &&
     reason.$type === "app.bsky.feed.defs#reasonRepost";
+
+  // function setThemeColor() {
+  //   const colorVariants = {
+  //     stone:
+  //   }
+  // }
+
+  // Helper function to generate color variations
+  // const generateColorVariants = (baseColor) => {
+  //   const variants = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+
+  //   return variants.reduce((acc, variant) => {
+  //     // Use color-mix to create variations
+  //     const mixPercentage = (() => {
+  //       switch (true) {
+  //         case variant < 500: // Lighter variants
+  //           return 100 - variant / 5;
+  //         case variant > 500: // Darker variants
+  //           return (variant - 500) / 5;
+  //         default: // 500 is the base color
+  //           return 0;
+  //       }
+  //     })();
+
+  //     const mixDirection = variant < 500 ? "white" : "black";
+
+  //     acc[`--theme-color-${variant}`] =
+  //       variant === 500
+  //         ? baseColor
+  //         : `color-mix(in srgb, ${baseColor}, ${mixDirection} ${mixPercentage}%)`;
+
+  //     return acc;
+  //   }, {});
+  // };
+
+  // const style = generateColorVariants(themeColor);
 
   return (
     /** Things to add:
@@ -22,27 +57,36 @@ export default function BlueskyPost({ post_data }) {
     <div>
       <a href={blueskyUri} target="_blank">
         <div
-          className="p-4 bg-stone-200 dark:bg-stone-800 rounded-lg
-        border border-stone-300 dark:border-stone-500 border-b-stone-900 dark:border-b-stone-200 hover:border-stone-900 hover:dark:border-stone-200 "
+          className={`p-4 dark:bg-neutral-800 rounded-lg
+        border border-neutral-300 dark:border-neutral-500 border-b-neutral-900 dark:border-b-neutral-200 hover:border-neutral-900 hover:dark:border-neutral-200`}
         >
           <div className="flex flex-col w-full">
             {isRepost && (
-              <div className="ml-16 -mt-2 pb-2 text-xs text-stone-700 dark:text-stone-400">
+              <div
+                className={`ml-16 -mt-2 pb-2 text-xs text-neutral-700 dark:text-neutral-400`}
+              >
                 🔁 Reposted by @{reason.by.handle}
               </div>
             )}
             <div className="flex w-full items-start">
               <img
-                className="mr-4 border border-stone-900 dark:border-stone-500 rounded-full"
+                className={`mr-4 border border-neutral-900 dark:border-neutral-500 rounded-full`}
                 src={author.avatar}
                 height={"50px"}
                 width={"50px"}
                 alt={`Avatar photo of user ${author.displayName}`}
               />
               <div className="w-full">
-                <BlueskyPostHeader author={author} record={record} />
-                <BlueskyPostText text={record.text} />
-                <BlueskyPostFooter post={post_data.post} />
+                <BlueskyPostHeader
+                  author={author}
+                  record={record}
+                  themeColor={themeColor}
+                />
+                <BlueskyPostText text={record.text} themeColor={themeColor} />
+                <BlueskyPostFooter
+                  post={postData.post}
+                  themeColor={themeColor}
+                />
               </div>
             </div>
           </div>

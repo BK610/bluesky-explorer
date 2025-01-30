@@ -21,7 +21,7 @@ export default function ResultRow({ post }) {
   };
 
   return (
-    <div className="border border-black dark:border-white p-1 grid grid-cols-1 md:grid-cols-2 md:space-x-2 space-y-1 md:space-y-0">
+    <div className="rounded-md border border-black dark:border-white p-2 grid grid-cols-1 md:grid-cols-2 md:space-x-2 space-y-1 md:space-y-0">
       <BlueskyPost postData={post} />
       <div className="h-72 overflow-auto font-mono">
         <div className="sticky z-10 pb-1 top-0 grid grid-cols-[1fr_40px] bg-white dark:bg-black">

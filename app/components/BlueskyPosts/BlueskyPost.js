@@ -57,8 +57,8 @@ export default function BlueskyPost({ postData }) {
     <div>
       <a href={blueskyUri} target="_blank">
         <div
-          className={`p-4 dark:bg-neutral-800 rounded-lg
-        border border-neutral-300 dark:border-neutral-500 border-b-neutral-900 dark:border-b-neutral-200 hover:border-neutral-900 hover:dark:border-neutral-200`}
+          className={`p-4 bg-neutral-200 dark:bg-neutral-800 rounded-lg
+        border border-neutral-300 dark:border-neutral-400 border-b-neutral-900 dark:border-b-neutral-200 hover:border-neutral-900 hover:dark:border-neutral-200`}
         >
           <div className="flex flex-col w-full">
             {isRepost && (
@@ -77,16 +77,9 @@ export default function BlueskyPost({ postData }) {
                 alt={`Avatar photo of user ${author.displayName}`}
               />
               <div className="w-full">
-                <BlueskyPostHeader
-                  author={author}
-                  record={record}
-                  themeColor={themeColor}
-                />
-                <BlueskyPostText text={record.text} themeColor={themeColor} />
-                <BlueskyPostFooter
-                  post={postData.post}
-                  themeColor={themeColor}
-                />
+                <BlueskyPostHeader author={author} record={record} />
+                <BlueskyPostText text={record.text} />
+                <BlueskyPostFooter post={postData.post} />
               </div>
             </div>
           </div>

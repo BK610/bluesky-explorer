@@ -7,7 +7,7 @@ export default function BlueskyPostText({ text }) {
 
   return (
     <div
-      className="prose prose-stone dark:prose-invert leading-snug text-sm text-stone-900 dark:text-stone-200"
+      className={`prose prose-stone dark:prose-invert leading-snug text-sm text-neutral-900 dark:text-neutral-100`}
       dangerouslySetInnerHTML={{ __html: parsedText }}
     ></div>
   );

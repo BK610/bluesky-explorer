@@ -8,6 +8,10 @@ import {
 } from "react-json-view-lite";
 import "react-json-view-lite/dist/index.css";
 import Image from "next/image";
+import {
+  ExpressiveCodeBlock,
+  ExpressiveCodeEngine,
+} from "rehype-expressive-code";
 
 /**
  *
@@ -33,6 +37,18 @@ export default function ResultRow({ type, data }) {
   //   post: data.post.cid,
   //   profile: data.did,
   // };
+
+  // const markdownJson = `
+  //   ${JSON.stringify(data, null, 2)}
+  // `;
+
+  // const codeBlock = new ExpressiveCodeBlock({
+  //   code: markdownJson,
+  //   language: "json",
+  // });
+
+  // const ecengine = new ExpressiveCodeEngine();
+  // const renderedCode = ecengine.render(codeBlock);
 
   return (
     <div className="rounded-md border border-black dark:border-white p-2 grid grid-cols-1 md:grid-cols-2 md:space-x-2 space-y-1 md:space-y-0">
@@ -65,6 +81,7 @@ export default function ResultRow({ type, data }) {
             shouldExpandNode={allExpanded}
             style={darkStyles}
           />
+          {/* {codeBlock.code} */}
         </div>
       </div>
     </div>

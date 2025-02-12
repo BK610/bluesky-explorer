@@ -9,7 +9,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [currentQuery, setCurrentQuery] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
-  const [results, setResults] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [profile, setProfile] = useState();
   const [searchError, setSearchError] = useState(undefined);
 
   const handleSearch = (query) => {
@@ -19,10 +20,11 @@ export default function Home() {
   const fetchData = async (query) => {
     try {
       setLoading(true);
-      const feed = await getAuthorFeed(query);
-      if (feed) {
+      const { profile, posts } = await getAuthorFeed(query);
+      if (posts) {
         setHasSearched(true);
-        setResults(JSON.parse(JSON.stringify(feed)));
+        setPosts(JSON.parse(JSON.stringify(posts)));
+        setProfile(profile);
         setSearchError(undefined);
       }
     } catch (error) {
@@ -54,22 +56,24 @@ export default function Home() {
       <div className={`${!hasSearched && "hidden"} mt-10 w-full mx-auto`}>
         <h2 className="text-2xl font-semibold pb-4">Found data</h2>
         <h3 className="text-xl font-semibold font-mono pb-2 text-gray-600 dark:text-gray-300">
-          Profile Metadata
+          Profile
         </h3>
         <div className="pb-4 font-mono text-gray-800 dark:text-gray-200">
-          Coming soon...
+          {profile && <ResultRow type="profile" data={profile} />}
         </div>
         <h3 className="text-xl font-semibold font-mono pb-2 text-gray-600 dark:text-gray-300">
           Posts
         </h3>
         <p className="pb-2 font-mono text-gray-800 dark:text-gray-200">
-          Fetched most recent {results.length} posts.
+          Fetched most recent {posts.length} posts.
         </p>
-        <div className="space-y-4">
-          {results.map((post, key) => (
-            <ResultRow post={post} key={key} />
+        <ul className="space-y-4">
+          {posts.map((post, key) => (
+            <li key={key}>
+              <ResultRow type="post" data={post} key={key} />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );
@@ -92,17 +96,21 @@ async function getAuthorFeed(query) {
   if (!did) did = query;
 
   try {
-    const posts = await agent.getAuthorFeed({
+    const results = await agent.getAuthorFeed({
       actor: did,
       limit: 10,
     });
 
-    const feed = posts.data.feed;
+    const profile = await agent.getProfile({ actor: did });
+
+    console.log(profile);
+
+    const posts = results.data.feed;
 
     // console.log(feed);
     // console.log(typeof feed);
 
-    return feed;
+    return { profile, posts };
   } catch (error) {
     console.error(`Error fetching feed for query: ${query}. ${error}`);
     throw error;

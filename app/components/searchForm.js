@@ -23,6 +23,7 @@ const SearchForm = ({ onSearch, loading, searchError }) => {
             className="rounded-l-md w-full px-2 py-2 text-sm text-black font-mono border border-r-0 dark:border-white border-black"
             type="search"
             placeholder="baileykane.co"
+            autoFocus
             onChange={(e) => setQuery(e.target.value)}
           />
           <button
